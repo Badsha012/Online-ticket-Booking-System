@@ -1,10 +1,10 @@
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 public class MainDashboard extends JFrame {
-    private final JPanel cardsPanel = new JPanel(new GridLayout(1, 4, 16, 0));
+    private final JPanel cardsPanel = new JPanel(new GridLayout(1, 4, 18, 0));
     private final DefaultTableModel recentModel;
     private final DefaultTableModel routesModel;
 
@@ -19,12 +19,12 @@ public class MainDashboard extends JFrame {
 
         add(createSidebar(), BorderLayout.WEST);
 
-        JPanel mainContent = AppStyle.pagePanel(new BorderLayout(18, 18));
+        JPanel mainContent = AppStyle.pagePanel(new BorderLayout(20, 20));
         mainContent.add(createHeader(), BorderLayout.NORTH);
 
         cardsPanel.setBackground(AppStyle.BACKGROUND);
 
-        JPanel tablesPanel = new JPanel(new GridLayout(1, 2, 16, 0));
+        JPanel tablesPanel = new JPanel(new GridLayout(1, 2, 18, 0));
         tablesPanel.setBackground(AppStyle.BACKGROUND);
 
         recentModel = new DefaultTableModel(new String[]{"Passenger", "Route", "Date", "Seat", "Status"}, 0) {
@@ -47,7 +47,7 @@ public class MainDashboard extends JFrame {
         tablesPanel.add(createTablePanel("Recent Ticket Bookings", "Latest sales and cancellation status", recentTable));
         tablesPanel.add(createTablePanel("Active Routes", "Current vehicles and available capacity", routesTable));
 
-        JPanel centerContainer = new JPanel(new BorderLayout(0, 18));
+        JPanel centerContainer = new JPanel(new BorderLayout(0, 20));
         centerContainer.setBackground(AppStyle.BACKGROUND);
         centerContainer.add(cardsPanel, BorderLayout.NORTH);
         centerContainer.add(tablesPanel, BorderLayout.CENTER);
@@ -94,19 +94,19 @@ public class MainDashboard extends JFrame {
         JPanel sidebar = new JPanel(new BorderLayout());
         sidebar.setBackground(AppStyle.NAVY);
         sidebar.setPreferredSize(new Dimension(240, 720));
-        sidebar.setBorder(BorderFactory.createEmptyBorder(18, 14, 18, 14));
+        sidebar.setBorder(BorderFactory.createEmptyBorder(22, 16, 22, 16));
 
         JPanel brand = new JPanel(new GridLayout(2, 1, 0, 2));
         brand.setBackground(AppStyle.NAVY);
         JLabel name = new JLabel("TicketPro");
         name.setForeground(Color.WHITE);
-        name.setFont(new Font("Segoe UI", Font.BOLD, 22));
+        name.setFont(new Font("Segoe UI", Font.BOLD, 23));
         JLabel tagline = new JLabel("Booking Management");
-        tagline.setForeground(new Color(190, 203, 224));
+        tagline.setForeground(new Color(148, 163, 184));
         brand.add(name);
         brand.add(tagline);
 
-        JPanel menu = new JPanel(new GridLayout(10, 1, 0, 8));
+        JPanel menu = new JPanel(new GridLayout(10, 1, 0, 9));
         menu.setOpaque(false);
         menu.setBorder(BorderFactory.createEmptyBorder(28, 0, 0, 0));
 
@@ -155,13 +155,13 @@ public class MainDashboard extends JFrame {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2.setColor(getBackground());
-                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 8, 8);
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 6, 6);
                 g2.dispose();
                 super.paintComponent(g);
             }
         };
-        button.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        button.setForeground(new Color(241, 245, 249));
+        button.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        button.setForeground(Color.WHITE);
         button.setBackground(AppStyle.NAVY);
         button.setBorder(BorderFactory.createEmptyBorder(12, 16, 12, 16));
         button.setContentAreaFilled(false);
@@ -169,27 +169,30 @@ public class MainDashboard extends JFrame {
         button.setFocusPainted(false);
         button.setBorderPainted(false);
         button.setHorizontalAlignment(SwingConstants.LEFT);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 button.setBackground(AppStyle.NAVY_HOVER);
                 button.setForeground(Color.WHITE);
             }
 
+            @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setBackground(AppStyle.NAVY);
-                button.setForeground(new Color(241, 245, 249));
+                button.setForeground(Color.WHITE);
             }
         });
         return button;
     }
 
     private JPanel createCard(String title, String value, String helper, Color accent) {
-        JPanel card = AppStyle.surfacePanel(new BorderLayout(12, 0));
-        card.setPreferredSize(new Dimension(180, 96));
+        JPanel card = AppStyle.surfacePanel(new BorderLayout(14, 0));
+        card.setPreferredSize(new Dimension(180, 104));
 
         JPanel accentBox = new JPanel();
         accentBox.setBackground(accent);
-        accentBox.setPreferredSize(new Dimension(8, 70));
+        accentBox.setPreferredSize(new Dimension(7, 72));
         card.add(accentBox, BorderLayout.WEST);
 
         JPanel info = new JPanel(new GridLayout(3, 1, 0, 2));
@@ -199,7 +202,7 @@ public class MainDashboard extends JFrame {
         titleLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         JLabel valueLabel = new JLabel(value);
         valueLabel.setForeground(AppStyle.TEXT);
-        valueLabel.setFont(new Font("Segoe UI", Font.BOLD, 26));
+        valueLabel.setFont(new Font("Segoe UI", Font.BOLD, 28));
         JLabel helperLabel = new JLabel(helper);
         helperLabel.setForeground(AppStyle.MUTED);
         helperLabel.setFont(new Font("Segoe UI", Font.PLAIN, 11));

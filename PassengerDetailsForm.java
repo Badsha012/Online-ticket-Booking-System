@@ -45,7 +45,7 @@ public class PassengerDetailsForm extends JFrame {
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         bottomPanel.setBackground(Color.WHITE);
         JButton btnRefresh = AppStyle.secondaryButton("Refresh");
-        JButton btnDelete = AppStyle.secondaryButton("Remove");
+        JButton btnDelete = AppStyle.dangerButton("Remove");
         JButton btnClose = AppStyle.primaryButton("Close");
         bottomPanel.add(btnRefresh);
         bottomPanel.add(btnDelete);
@@ -137,7 +137,7 @@ public class PassengerDetailsForm extends JFrame {
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             setForeground(Color.WHITE);
-            setBackground(new Color(220, 38, 38));
+            setBackground(AppStyle.DANGER);
             return this;
         }
     }
@@ -151,7 +151,7 @@ public class PassengerDetailsForm extends JFrame {
             this.table = table;
             button.setFocusPainted(false);
             button.setForeground(Color.WHITE);
-            button.setBackground(new Color(220, 38, 38));
+            button.setBackground(AppStyle.DANGER);
             button.setOpaque(true);
             button.setContentAreaFilled(true);
             button.setBorderPainted(false);

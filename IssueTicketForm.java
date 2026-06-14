@@ -1,6 +1,6 @@
-import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
+import javax.swing.*;
 
 public class IssueTicketForm extends JFrame {
     public IssueTicketForm() {
@@ -35,10 +35,10 @@ public class IssueTicketForm extends JFrame {
         JTextField txtPrice = new JTextField(18);
         txtPrice.setEditable(false);
 
-        AppStyle.styleField(cbPassenger);
-        AppStyle.styleField(cbRoute);
+        AppStyle.styleComboBox(cbPassenger);
+        AppStyle.styleComboBox(cbRoute);
         AppStyle.styleField(txtDate);
-        AppStyle.styleField(cbSeat);
+        AppStyle.styleComboBox(cbSeat);
         AppStyle.styleField(txtPrice);
 
         addRow(form, gbc, 0, "Passenger", cbPassenger);

@@ -1,6 +1,6 @@
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 public class IssuedTicketsForm extends JFrame {
     private final DefaultTableModel model;
@@ -34,7 +34,7 @@ public class IssuedTicketsForm extends JFrame {
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         bottomPanel.setBackground(Color.WHITE);
         JButton btnRefresh = AppStyle.secondaryButton("Refresh");
-        JButton btnCancel = AppStyle.primaryButton("Cancel Ticket");
+        JButton btnCancel = AppStyle.dangerButton("Cancel Ticket");
         bottomPanel.add(btnRefresh);
         bottomPanel.add(btnCancel);
         content.add(bottomPanel, BorderLayout.SOUTH);

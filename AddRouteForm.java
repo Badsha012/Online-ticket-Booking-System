@@ -1,5 +1,5 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class AddRouteForm extends JFrame {
     public AddRouteForm() {
@@ -32,7 +32,7 @@ public class AddRouteForm extends JFrame {
         AppStyle.styleField(txtRouteId);
         AppStyle.styleField(txtFrom);
         AppStyle.styleField(txtTo);
-        AppStyle.styleField(cbVehicle);
+        AppStyle.styleComboBox(cbVehicle);
         AppStyle.styleField(txtSeats);
         AppStyle.styleField(txtPrice);
 
