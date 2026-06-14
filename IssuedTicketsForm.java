@@ -57,19 +57,27 @@ public class IssuedTicketsForm extends JFrame {
                 return;
             }
 
-            ticket.status = "Cancelled";
-            ticket.route.availableSeats++;
-            loadTickets();
-            if (onChanged != null) {
-                onChanged.run();
+            try {
+                TicketDataStore.cancelTicket(ticket);
+                loadTickets();
+                if (onChanged != null) {
+                    onChanged.run();
+                }
+                JOptionPane.showMessageDialog(this, "Ticket marked as Cancelled!");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage());
             }
-            JOptionPane.showMessageDialog(this, "Ticket marked as Cancelled!");
         });
 
         btnRefresh.addActionListener(e -> loadTickets());
     }
 
     private void loadTickets() {
+        try {
+            TicketDataStore.refreshTickets();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage());
+        }
         model.setRowCount(0);
         int id = 1;
         for (TicketRecord ticket : TicketDataStore.tickets) {

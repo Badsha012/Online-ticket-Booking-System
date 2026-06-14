@@ -69,7 +69,7 @@ public class AddRouteForm extends JFrame {
                 }
                 int seats = Integer.parseInt(txtSeats.getText().trim());
                 double price = Double.parseDouble(txtPrice.getText().trim());
-                TicketDataStore.routes.add(new RouteRecord(
+                TicketDataStore.addRoute(new RouteRecord(
                         txtRouteId.getText().trim(),
                         txtFrom.getText().trim(),
                         txtTo.getText().trim(),
@@ -84,6 +84,8 @@ public class AddRouteForm extends JFrame {
                 dispose();
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Seats and price must be valid numbers.");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage());
             }
         });
     }

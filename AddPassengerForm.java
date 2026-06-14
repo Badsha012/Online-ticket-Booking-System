@@ -59,17 +59,21 @@ public class AddPassengerForm extends JFrame {
                 JOptionPane.showMessageDialog(this, "Name and contact number are required.");
                 return;
             }
-            TicketDataStore.passengers.add(new PassengerRecord(
-                    txtName.getText().trim(),
-                    txtContact.getText().trim(),
-                    txtEmail.getText().trim(),
-                    txtAddress.getText().trim()
-            ));
-            if (onSaved != null) {
-                onSaved.run();
+            try {
+                TicketDataStore.addPassenger(new PassengerRecord(
+                        txtName.getText().trim(),
+                        txtContact.getText().trim(),
+                        txtEmail.getText().trim(),
+                        txtAddress.getText().trim()
+                ));
+                if (onSaved != null) {
+                    onSaved.run();
+                }
+                JOptionPane.showMessageDialog(this, "Passenger details registered!");
+                dispose();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage());
             }
-            JOptionPane.showMessageDialog(this, "Passenger details registered!");
-            dispose();
         });
     }
 

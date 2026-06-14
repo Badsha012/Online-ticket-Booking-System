@@ -49,20 +49,45 @@ public class AppStyle {
 
     public static JButton primaryButton(String text) {
         JButton button = new JButton(text);
-        button.setBackground(NAVY);
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
+        styleButton(button, NAVY, NAVY_HOVER, Color.WHITE);
         return button;
     }
 
     public static JButton secondaryButton(String text) {
         JButton button = new JButton(text);
-        button.setBackground(new Color(238, 242, 247));
-        button.setForeground(TEXT);
-        button.setFocusPainted(false);
-        button.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
+        styleButton(button, new Color(226, 232, 240), new Color(203, 213, 225), TEXT);
         return button;
+    }
+
+    private static void styleButton(JButton button, Color background, Color hoverBackground, Color foreground) {
+        button.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        button.setBackground(background);
+        button.setForeground(foreground);
+        button.setFocusPainted(false);
+        button.setContentAreaFilled(false);
+        button.setOpaque(true);
+        button.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(background.darker()),
+                new EmptyBorder(9, 18, 9, 18)
+        ));
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(hoverBackground);
+                button.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(hoverBackground.darker()),
+                        new EmptyBorder(9, 18, 9, 18)
+                ));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(background);
+                button.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(background.darker()),
+                        new EmptyBorder(9, 18, 9, 18)
+                ));
+            }
+        });
     }
 
     public static void styleField(JComponent field) {

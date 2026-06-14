@@ -142,7 +142,7 @@ public class MainDashboard extends JFrame {
         btnIssued.addActionListener(e -> new IssuedTicketsForm(this::refreshDashboard).setVisible(true));
         btnCancelTicket.addActionListener(e -> new IssuedTicketsForm(this::refreshDashboard).setVisible(true));
         btnRoutes.addActionListener(e -> JOptionPane.showMessageDialog(this, "Total active routes: " + TicketDataStore.routes.size()));
-        btnPassengers.addActionListener(e -> JOptionPane.showMessageDialog(this, "Total passengers: " + TicketDataStore.passengers.size()));
+        btnPassengers.addActionListener(e -> new PassengerDetailsForm(this::refreshDashboard).setVisible(true));
         btnReports.addActionListener(e -> showReport());
         btnLogout.addActionListener(e -> dispose());
 
@@ -225,6 +225,11 @@ public class MainDashboard extends JFrame {
     }
 
     private void refreshDashboard() {
+        try {
+            TicketDataStore.refreshAll();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Database error: " + ex.getMessage());
+        }
         cardsPanel.removeAll();
         cardsPanel.add(createCard("Total Routes", String.valueOf(TicketDataStore.routes.size()), "active destinations", new Color(37, 99, 235)));
         cardsPanel.add(createCard("Passengers", String.valueOf(TicketDataStore.passengers.size()), "registered users", new Color(22, 163, 74)));
